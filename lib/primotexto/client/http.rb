@@ -52,10 +52,10 @@ module Primotexto
           http_response.body
         end
       when Net::HTTPUnauthorized
-        raise AuthenticationError
+        fail AuthenticationError
       else
         error_code = JSON.parse(http_response.body)['code']
-        raise Error, "#{ERROR_CODES[error_code]} (code: #{error_code})"
+        fail Error, "#{ERROR_CODES[error_code]} (code: #{error_code})"
       end
     end
 

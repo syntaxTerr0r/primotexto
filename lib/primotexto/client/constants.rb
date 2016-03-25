@@ -47,6 +47,10 @@ module Primotexto
       ['get_unsubscribers_contacts', 'get_unsubscribers_default_contacts'],
       ['post_unsubscribers_contacts', 'post_unsubscribers_default_contacts_params'],
       ['delete_unsubscribers_contacts', 'delete_unsubscribers_default_contacts_params'],
+      'post_lists_params',
+      ['post_list_contact', 'post_lists-id_params'],
+      ['delete_list_contact', 'delete_lists-id_contacts-id_params'],
+
     ].freeze
   end
 end

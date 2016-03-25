@@ -10,6 +10,12 @@ Add this line to your application's Gemfile:
 gem 'primotexto'
 ```
 
+Or from Github to install the 'edge' version:
+
+```ruby
+gem 'primotexto', github: 'syntaxTerr0r/primotexto'
+```
+
 And then execute:
 
     $ bundle
@@ -21,6 +27,7 @@ Or install it yourself as:
 ## Usage
 
 All API methods are not implemented yet. Here is an exhaustive list of what is currently supported.
+Methods naming try to follow the API naming, however some changes has been made to make some name more friendly.
 
 ### Initializing a new client
 
@@ -28,7 +35,7 @@ All API methods are not implemented yet. Here is an exhaustive list of what is c
 pt = Primotexto.client(key: 'MY_SHINY_API_KEY')
 ```
 
-Alternatively, you can define the key in the `PRIMOTEXTO_API_KEY` `ENV` variable:
+Alternatively, you can define the key in an `ENV` variable: `PRIMOTEXTO_API_KEY`
 
 ```ruby
 pt = Primotexto.client
@@ -108,7 +115,7 @@ pt.get_unsubscribers_contacts
 pt.post_unsubscribers_contacts(identifier: '+33612345678')
 ```
 
-##### Removing a phone number from unsubscribers list
+#### Removing a phone number from unsubscribers list
 
 [API reference](https://www.primotexto.com/api/account/stats.asp)
 
@@ -132,12 +139,34 @@ pt.get_bounces_contacts
 pt.post_bounces_contacts(identifier: '+33612345678')
 ```
 
-##### Removing a phone number from bounces list
+#### Removing a phone number from bounces list
 
 [API reference](https://www.primotexto.com/api/account/stats.asp)
 
 ```ruby
 pt.delete_bounces_contacts(identifier: '+33612345678')
+```
+
+### Contacts lists
+
+[API reference](https://www.primotexto.com/api/lists/contacts/index.asp)
+
+#### Creating a list
+
+```ruby
+vip_list = pt.post_lists(name: 'VIP People')
+```
+
+#### Adding a contact to a list
+
+```ruby
+vip_contact = pt.post_list_contact(list_id: vip_list[:id], identifier: '+33612345678')
+```
+
+#### Removing a contact from a list
+
+```ruby
+pt.delete_list_contact(list_id: vip_list[:id], contact_id: vip_contact[:id], identifier: '+33612345678')
 ```
 
 ### Getting you account stats
