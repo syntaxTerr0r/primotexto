@@ -1,3 +1,5 @@
+[![Gem Version](https://badge.fury.io/rb/primotexto.svg)](https://badge.fury.io/rb/primotexto)
+
 # Primotexto
 
 This is an unofficial Ruby client for the [Primotexto API](https://www.primotexto.com/api/).
