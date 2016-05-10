@@ -1,6 +1,7 @@
 require 'net/http'
 require 'json'
 require 'cgi'
+require 'active_support/core_ext/object/try'
 
 module Primotexto
   class Client
@@ -46,7 +47,7 @@ module Primotexto
     def parse(http_response)
       case http_response
       when Net::HTTPSuccess
-        if http_response['Content-Type'].split(';').first == 'application/json'
+        if http_response['Content-Type'].try(:split, ';').try(:first) == 'application/json'
           JSON.parse!(http_response.body, symbolize_names: true)
         else
           http_response.body
